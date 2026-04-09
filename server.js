@@ -1,10 +1,21 @@
+const express = require('express');
+const http = require('http');
 const WebSocket = require('ws');
+const path = require('path');
 
-// Start the server on port 8080
-const wss = new WebSocket.Server({ port: 8080 });
+// 1. Set up the Express Web Server
+const app = express();
+const server = http.createServer(app);
 
-console.log("Chat Server is running on ws://localhost:8080");
+// Tell Express to serve your HTML, CSS, and JS files from the "frontend" folder
+app.use(express.static(path.join(__dirname, 'frontend'))); 
 
+// 2. Attach the WebSocket Server to the Web Server
+const wss = new WebSocket.Server({ server });
+
+console.log("Starting server...");
+
+// --- YOUR EXACT CHAT LOGIC ---
 wss.on('connection', (ws) => {
     console.log("A new client connected.");
 
@@ -109,4 +120,9 @@ wss.on('connection', (ws) => {
         }
         // ------------------------------------------
     });
+});
+
+// 3. Start listening on port 8080
+server.listen(8080, () => {
+    console.log("Web and Chat Server are LIVE on port 8080!");
 });
