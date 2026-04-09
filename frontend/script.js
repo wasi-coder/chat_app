@@ -13,8 +13,10 @@ function connectAndJoin() {
 
     currentUserId = userId;
 
-    // Connect to your local server
-    ws = new WebSocket('ws://localhost:8080');
+    // Dynamically connect to the server based on where the site is hosted
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const host = window.location.hostname || 'localhost';
+    ws = new WebSocket(`${protocol}//${host}:8080`);
 
     ws.onopen = () => {
         // Hide Login, Show App
