@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Chat App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="login-overlay" id="loginScreen">
+        <div class="login-card">
+            <h2>Join the Chat</h2>
+            <input type="text" id="userId" placeholder="Choose a Username" autocomplete="off">
+            <input type="text" id="groupId" placeholder="Enter Group ID" autocomplete="off">
+            <button onclick="connectAndJoin()">Enter Application</button>
+        </div>
+    </div>
+
+    <div class="app-wrapper" id="appScreen">
+        
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3>Nexus Chat</h3>
+            </div>
+            
+            <div class="friends-list-container">
+                <div class="list-title">Group Members</div>
+                <ul id="friendsList" class="friends-list">
+                    </ul>
+            </div>
+
+            <button class="leave-btn" onclick="disconnect()">Leave Chat</button>
+        </div>
+
+        <div class="chat-area">
+            <div class="chat-header">
+                <h2 id="headerGroupTitle">General Chat</h2>
+            </div>
+            
+            <div class="messages" id="chatBox">
+                </div>
+
+            <div class="input-area">
+                <select class="type-select" id="messageType">
+                    <option value="group">Group</option>
+                    <option value="public">Public</option>
+                    <option value="private">Note (Self)</option>
+                </select>
+                <input type="text" class="chat-input" id="messageText" placeholder="Type your message here..." onkeypress="handleKeyPress(event)" autocomplete="off">
+                <button class="send-btn" onclick="sendMessage()" title="Send">
+                    <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
